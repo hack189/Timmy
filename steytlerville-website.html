@@ -3,488 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steytlerville - Eastern Cape, South Africa</title>
+    <meta name="description" content="Steytlerville — community, weather, rugby, school news and local info for Steytlerville, Eastern Cape, South Africa">
+    <title>Steytlerville — Eastern Cape, South Africa</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root{
+            --bg: #f7fafc;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --primary: #0f172a; /* dark navy */
+            --brand: #2563eb; /* blue */
+            --accent: #f59e0b; /* amber */
+            --success: #10b981;
+            --glass: rgba(255,255,255,0.6);
+            --radius: 12px;
+            --container: 1200px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background:var(--bg);
+            color:var(--primary);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.55;
+        }
+        .container{max-width:var(--container);margin:0 auto;padding:0 1.25rem}
+
+        /* NAV */
+        nav{position:sticky;top:0;background:linear-gradient(90deg,var(--brand),#60a5fa);padding:0.5rem 0;box-shadow:0 6px 20px rgba(2,6,23,0.12);z-index:60}
+        .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+        .logo{display:flex;align-items:center;gap:.6rem;color:#fff;font-weight:700;text-decoration:none}
+        .logo .mark{font-size:1.6rem}
+        .nav-links{display:flex;gap:1rem;list-style:none;margin:0;padding:0}
+        .nav-links a{color:rgba(255,255,255,0.95);text-decoration:none;padding:.5rem .7rem;border-radius:8px;font-weight:600}
+        .nav-links a:hover{background:rgba(255,255,255,0.08)}
+        .nav-actions{display:flex;gap:.5rem;align-items:center}
+        .btn{background:var(--accent);color:#061124;border:none;padding:.6rem 1rem;border-radius:10px;font-weight:700;cursor:pointer}
+        .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff}
+
+        /* Mobile menu */
+        .mobile-toggle{display:none;background:transparent;border:0;color:#fff;font-size:1.25rem}
+        @media(max-width:840px){
+            .nav-links{display:none;position:absolute;left:0;right:0;top:64px;background:linear-gradient(180deg,var(--brand),#1e40af);padding:1rem;flex-direction:column;border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+            .nav-links.show{display:flex}
+            .mobile-toggle{display:inline-flex}
         }
 
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #3b82f6;
-            --accent-color: #f59e0b;
-            --success-color: #10b981;
-            --dark: #1f2937;
-            --light: #f9fafb;
-            --border-color: #e5e7eb;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
-        }
-
-        /* Navigation */
-        nav {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 8rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        /* HERO */
+        .hero{padding:5.5rem 0 4rem;background:linear-gradient(180deg,rgba(15,23,42,0.9),rgba(37,99,235,0.85)), radial-gradient(circle at 10% 20%,rgba(255,255,255,0.03),transparent 20%);color:white}
+        .hero-grid{display:flex;gap:2rem;align-items:center}
+        .hero-left{flex:1}
+        .hero-right{flex:1;display:flex;justify-content:center}
+        .hero h1{font-size:2.4rem;margin:0 0 .6rem;line-height:1.05}
+        .hero p.lead{opacity:.95;color:rgba(255,255,255,0.9);margin-bottom:1rem}
+        .hero .meta{background:rgba(255,255,255,0.06);padding:.6rem 1rem;border-radius:10px;font-weight:600;display:inline-block}
+        .hero .cta-group{margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap}
+        .card-hero{background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));padding:1.25rem;border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.25);min-width:260px}
 
         /* Sections */
-        section {
-            padding: 4rem 2rem;
-        }
+        section{padding:3rem 0}
+        h2{font-size:1.6rem;margin-bottom:1rem;color:var(--brand);text-align:center}
+        .section-intro{max-width:900px;margin:0 auto;color:var(--muted);text-align:center;margin-bottom:1.6rem}
 
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-        }
+        /* Grid utilities */
+        .grid{display:grid;gap:1.25rem}
+        .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+        .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+        .card{background:var(--card);padding:1.25rem;border-radius:var(--radius);box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+        .card h3{margin-top:0;color:var(--brand)}
+        .muted{color:var(--muted)}
 
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 2px;
-        }
+        /* Weather */
+        .weather-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+        .weather-item{display:flex;flex-direction:column;gap:.5rem;align-items:center;padding:1rem;border-radius:10px;border-left:4px solid var(--accent);background:linear-gradient(180deg,#fff,#fbfdff)}
+        .weather-item .temp{font-weight:700;color:var(--brand);font-size:1.5rem}
 
-        /* Info Cards Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+        /* Rugby */
+        .rugby-teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+        .team-header{padding:1rem;border-radius:10px 10px 0 0;color:#fff}
+        .team-body{padding:1rem}
+        .team-card{overflow:hidden;border-radius:12px}
 
-        .card {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+        /* News */
+        .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+        .news-image{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff}
+        .news-content .date{color:var(--accent);font-weight:700}
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .card h3 {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: #6b7280;
-            line-height: 1.8;
-        }
-
-        /* Weather Section */
-        #weather {
-            background-color: #f0f9ff;
-        }
-
-        .weather-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .weather-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.8rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .weather-item h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .weather-item .temp {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin: 0.5rem 0;
-        }
-
-        .weather-item .rainfall {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-
-        /* Rugby Section */
-        #rugby {
-            background-color: #f5f3ff;
-        }
-
-        .rugby-teams {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .team-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .team-header h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-body {
-            padding: 2rem;
-        }
-
-        .team-body p {
-            color: #6b7280;
-            margin-bottom: 1rem;
-        }
-
-        .team-body ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .team-body li {
-            padding: 0.5rem 0;
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        .team-body li::before {
-            content: '🏉 ';
-            margin-right: 0.5rem;
-        }
-
-        /* News Section */
-        #news {
-            background-color: #fef3c7;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .news-item {
-            background: white;
-            border-radius: 0.8rem;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .news-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .news-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .news-content {
-            padding: 1.5rem;
-        }
-
-        .news-content h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .news-content .date {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .news-content p {
-            color: #6b7280;
-            font-size: 0.95rem;
-        }
-
-        /* School Section */
-        #school {
-            background-color: #dcfce7;
-        }
-
-        .school-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .school-info h3 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .school-info p {
-            color: #6b7280;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .events-list {
-            list-style: none;
-        }
-
-        .events-list li {
-            background: white;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--success-color);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .events-list li .event-date {
-            color: var(--accent-color);
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-
-        .events-list li .event-name {
-            color: var(--primary-color);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-
-        .events-list li .event-desc {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
+        /* School */
+        .school-content{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 
         /* Footer */
-        footer {
-            background: var(--primary-color);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
+        footer{background:#071433;color:#cfe5ff;padding:2rem 0}
+        .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+        footer a{color:#cfe5ff;text-decoration:none}
+
+        /* Responsive tweaks */
+        @media(max-width:980px){
+            .hero-grid{flex-direction:column;text-align:center}
+            .hero-right{order:-1}
+            .school-content{grid-template-columns:1fr}
+            .grid.cols-3{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:640px){
+            .grid.cols-3{grid-template-columns:1fr}
         }
 
-        footer h4 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        footer p {
-            margin: 0.3rem 0;
-            opacity: 0.9;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section {
-            text-align: left;
-        }
-
-        .footer-section h4 {
-            margin-top: 0;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: #bfdbfe;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent-color);
-        }
-
-        .divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin: 2rem 0;
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            section h2 {
-                font-size: 1.8rem;
-            }
-
-            .school-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card, .team-card, .news-item {
-            animation: fadeIn 0.6s ease-out;
-        }
+        /* subtle animations */
+        .fade-in{animation:fadeIn .6s ease both}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">🏘️ Steytlerville</a>
-            <ul>
+    <nav aria-label="Primary">
+        <div class="container nav-inner">
+            <a class="logo" href="#">
+                <span class="mark">🏘️</span>
+                <span>Steytlerville</span>
+            </a>
+            <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#weather">Weather</a></li>
                 <li><a href="#rugby">Rugby</a></li>
@@ -492,417 +136,357 @@
                 <li><a href="#school">School</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="btn" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">Explore</button>
+                <button class="btn secondary">Subscribe</button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to Steytlerville</h1>
-        <p>A vibrant community in the heart of the Eastern Cape, South Africa</p>
-        <p style="font-size: 1.1rem; opacity: 0.9;">Postal Code: 6250</p>
-        <button class="btn">Explore More</button>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="container">
-        <h2>About Steytlerville</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📍 Location</h3>
-                <p>Steytlerville is a charming town located in the Eastern Cape province of South Africa, part of the Sarah Baartman District Municipality. Situated approximately 348 kilometers south of Bhisho, the provincial capital.</p>
-            </div>
-            <div class="card">
-                <h3>👥 Community</h3>
-                <p>A welcoming community with diverse neighborhoods including Golden Valley, Volstruis Valley, and Vuyolwethu. The town serves as a hub for local sports, culture, and commerce in the region.</p>
-            </div>
-            <div class="card">
-                <h3>🏛️ Local Government</h3>
-                <p>Governed under the Sarah Baartman District Municipality, Steytlerville maintains local services and infrastructure that support the health, education, and wellbeing of its residents.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Weather Section -->
-    <section id="weather">
-        <div class="container">
-            <h2>Weather & Climate</h2>
-            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem; font-size: 1.1rem;">
-                Steytlerville enjoys a semi-arid climate with hot summers and mild winters, perfect for outdoor activities most of the year.
-            </p>
-            <div class="weather-grid">
-                <div class="weather-item">
-                    <h4>Summer (Jan)</h4>
-                    <div class="temp">31°C</div>
-                    <div class="rainfall">Rainfall: 28 mm</div>
-                    <p>Warm and sunny</p>
-                </div>
-                <div class="weather-item">
-                    <h4>Autumn (Apr)</h4>
-                    <div class="temp">25°C</div>
-                    <div class="rainfall">Rainfall: 32 mm</div>
-                    <p>Pleasant & mild</p>
-                </div>
-                <div class="weather-item">
-                    <h4>Winter (Jul)</h4>
-                    <div class="temp">20°C</div>
-                    <div class="rainfall">Rainfall: 4 mm</div>
-                    <p>Cool & dry</p>
-                </div>
-                <div class="weather-item">
-                    <h4>Spring (Oct)</h4>
-                    <div class="temp">26°C</div>
-                    <div class="rainfall">Rainfall: 19 mm</div>
-                    <p>Warming up</p>
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h1>Welcome to Steytlerville</h1>
+                <p class="lead">A vibrant community in the heart of the Eastern Cape, South Africa — home to great people, sport and local heritage.</p>
+                <div class="meta">Postal Code: 6250 • Sarah Baartman District</div>
+                <div class="cta-group">
+                    <button class="btn" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+                    <a class="btn" href="#news">Latest News</a>
                 </div>
             </div>
-            <div class="grid" style="margin-top: 2rem;">
-                <div class="card">
-                    <h3>☀️ Annual Statistics</h3>
-                    <p><strong>Average Maximum:</strong> 26°C</p>
-                    <p><strong>Annual Rainfall:</strong> 334 mm</p>
-                    <p><strong>Sunny Days:</strong> ~216 per year</p>
-                    <p>The region experiences a dry season with most rainfall in late summer and autumn.</p>
-                </div>
-                <div class="card">
-                    <h3>🎯 Best Time to Visit</h3>
-                    <p>The ideal period to visit Steytlerville is from April to October when temperatures range from 20-26°C and rainfall is minimal. Perfect for hiking, outdoor sports, and community events.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rugby Section -->
-    <section id="rugby">
-        <div class="container">
-            <h2>Rugby & Sports</h2>
-            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem; font-size: 1.1rem;">
-                Rugby is a cornerstone of Steytlerville's sporting culture with active teams competing regionally.
-            </p>
-            <div class="rugby-teams">
-                <div class="team-card">
-                    <div class="team-header">
-                        <h3>Steytlerville United</h3>
-                        <p>Primary Club</p>
+            <div class="hero-right">
+                <div class="card-hero card fade-in">
+                    <h3 style="margin:0 0 .5rem">Quick Snapshot</h3>
+                    <p class="muted" style="margin:0 0 .75rem">Semi-arid climate • Active rugby community • Welcoming schools and local services</p>
+                    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                        <div style="min-width:100px">
+                            <strong style="display:block;color:var(--brand)">Avg Temp</strong>
+                            <span class="muted">26°C</span>
+                        </div>
+                        <div style="min-width:120px">
+                            <strong style="display:block;color:var(--brand)">Annual Rain</strong>
+                            <span class="muted">~334 mm</span>
+                        </div>
+                        <div style="min-width:120px">
+                            <strong style="display:block;color:var(--brand)">Sunny Days</strong>
+                            <span class="muted">~216 / year</span>
+                        </div>
                     </div>
-                    <div class="team-body">
-                        <p>The flagship rugby club of Steytlerville, competing in EPRU competitions including the Adams Cup (West Division).</p>
-                        <h4 style="color: var(--primary-color); margin-top: 1rem;">Team Details:</h4>
-                        <ul>
-                            <li>Home Ground: Steytlerville Rugby Field</li>
-                            <li>Competition: EPRU Adams Cup</li>
-                            <li>Division: West</li>
-                            <li>Training: Regular seasonal schedule</li>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About -->
+        <section id="about" class="container">
+            <h2>About Steytlerville</h2>
+            <p class="section-intro">A small town with a strong sense of community. Below are a few highlights about location, governance and local life.</p>
+            <div class="grid cols-3">
+                <div class="card fade-in">
+                    <h3>📍 Location</h3>
+                    <p class="muted">Steytlerville is located in the Eastern Cape, part of the Sarah Baartman District Municipality. The town is roughly 348 km south of Bhisho and serves as a hub for nearby farming communities.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>👥 Community</h3>
+                    <p class="muted">A welcoming community with diverse neighbourhoods and active civic groups. Local sport, culture and markets form the backbone of social life.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>🏛️ Local Government</h3>
+                    <p class="muted">Services and infrastructure are administered under the Sarah Baartman District. Municipal offices handle permits, local projects and community support programmes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather -->
+        <section id="weather">
+            <div class="container">
+                <h2>Weather & Climate</h2>
+                <p class="section-intro">Steytlerville enjoys warm summers and mild winters. Here are the seasonal averages to help you plan a visit.</p>
+
+                <div class="weather-grid">
+                    <div class="weather-item card fade-in">
+                        <h4>Summer (Jan)</h4>
+                        <div class="temp">31°C</div>
+                        <div class="muted">Rainfall: 28 mm</div>
+                        <p class="muted">Warm and sunny — expect daytime heat.</p>
+                    </div>
+                    <div class="weather-item card fade-in">
+                        <h4>Autumn (Apr)</h4>
+                        <div class="temp">25°C</div>
+                        <div class="muted">Rainfall: 32 mm</div>
+                        <p class="muted">Pleasant and mild — great for outdoor activities.</p>
+                    </div>
+                    <div class="weather-item card fade-in">
+                        <h4>Winter (Jul)</h4>
+                        <div class="temp">20°C</div>
+                        <div class="muted">Rainfall: 4 mm</div>
+                        <p class="muted">Cool and dry — light layers recommended in evenings.</p>
+                    </div>
+                    <div class="weather-item card fade-in">
+                        <h4>Spring (Oct)</h4>
+                        <div class="temp">26°C</div>
+                        <div class="muted">Rainfall: 19 mm</div>
+                        <p class="muted">Warming up with more sunny days.</p>
+                    </div>
+                </div>
+
+                <div class="grid cols-2" style="margin-top:1.25rem">
+                    <div class="card fade-in">
+                        <h3>☀️ Annual Statistics</h3>
+                        <p class="muted"><strong>Average Maximum:</strong> 26°C • <strong>Annual Rainfall:</strong> 334 mm • <strong>Sunny Days:</strong> ~216</p>
+                        <p class="muted">Most rain falls in late summer and autumn; the dry season offers clear skies for outdoor events.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <h3>🎯 Best Time to Visit</h3>
+                        <p class="muted">April to October offers mild temperatures and low rainfall — ideal for hiking, sports and community events.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rugby -->
+        <section id="rugby">
+            <div class="container">
+                <h2>Rugby & Sports</h2>
+                <p class="section-intro">Rugby is central to local life — clubs, youth programs and seasonal fixtures bring the community together.</p>
+
+                <div class="rugby-teams">
+                    <article class="team-card card fade-in">
+                        <div class="team-header" style="background:linear-gradient(90deg,var(--brand),#60a5fa)">
+                            <h3 style="margin:0;color:#fff">Steytlerville United</h3>
+                            <p style="margin:0.25rem 0;color:rgba(255,255,255,0.9)">Primary Club</p>
+                        </div>
+                        <div class="team-body">
+                            <p class="muted">The flagship club competing in EPRU competitions including the Adams Cup (West Division).</p>
+                            <ul style="padding-left:1rem;color:var(--brand)">
+                                <li>Home Ground: Steytlerville Rugby Field</li>
+                                <li>Competition: EPRU Adams Cup</li>
+                                <li>Division: West</li>
+                                <li>Training: Seasonal schedule</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="team-card card fade-in">
+                        <div class="team-header" style="background:linear-gradient(90deg,#1e293b,var(--brand))">
+                            <h3 style="margin:0;color:#fff">Steytlerville Barbarians</h3>
+                            <p style="margin:0.25rem 0;color:rgba(255,255,255,0.9)">Secondary Squad</p>
+                        </div>
+                        <div class="team-body">
+                            <p class="muted">Community-focused squad participating in local tournaments and development fixtures.</p>
+                            <ul style="padding-left:1rem;color:var(--brand)">
+                                <li>Competitive Squad</li>
+                                <li>Youth Development</li>
+                                <li>Community Fixtures</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="team-card card fade-in">
+                        <div class="team-header" style="background:linear-gradient(90deg,var(--brand),#1e3a8a)">
+                            <h3 style="margin:0;color:#fff">Youth & Development</h3>
+                            <p style="margin:0.25rem 0;color:rgba(255,255,255,0.9)">Future of Rugby</p>
+                        </div>
+                        <div class="team-body">
+                            <p class="muted">Programmes nurturing young talent: coaching, school partnerships and age-group squads.</p>
+                            <ul style="padding-left:1rem;color:var(--brand)">
+                                <li>U16 Development</li>
+                                <li>U19 Championship</li>
+                                <li>Coaching Programs</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="grid cols-2" style="margin-top:1rem">
+                    <div class="card fade-in">
+                        <h3>🏆 Recent Highlights</h3>
+                        <p class="muted">Strong performances in recent EPRU competitions with enthusiastic local support and growing youth participation.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <h3>📅 Season Schedule</h3>
+                        <p class="muted">Fixtures are typically on weekends — contact the club or local sports office for the current season's schedule and venues.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News -->
+        <section id="news">
+            <div class="container">
+                <h2>Local News & Updates</h2>
+                <div class="news-grid">
+                    <article class="news-item card fade-in">
+                        <div class="news-image" style="background:linear-gradient(90deg,var(--brand),var(--accent))">📰</div>
+                        <div class="news-content" style="padding:0.9rem">
+                            <div class="date">June 15, 2026</div>
+                            <h4 style="margin:.4rem 0">Rugby Season Kicks Off</h4>
+                            <p class="muted">Steytlerville United begins their competitive season with a strong squad and community backing.</p>
+                        </div>
+                    </article>
+
+                    <article class="news-item card fade-in">
+                        <div class="news-image" style="background:linear-gradient(90deg,#34d399,#60a5fa)">🌳</div>
+                        <div class="news-content" style="padding:0.9rem">
+                            <div class="date">June 10, 2026</div>
+                            <h4 style="margin:.4rem 0">Community Cleanup Initiative</h4>
+                            <p class="muted">Residents organised a cleanup drive to beautify shared spaces and promote environmental awareness.</p>
+                        </div>
+                    </article>
+
+                    <article class="news-item card fade-in">
+                        <div class="news-image" style="background:linear-gradient(90deg,#f472b6,#60a5fa)">🎊</div>
+                        <div class="news-content" style="padding:0.9rem">
+                            <div class="date">June 5, 2026</div>
+                            <h4 style="margin:.4rem 0">Heritage Day Celebrations</h4>
+                            <p class="muted">Cultural events, food stalls and performances brought the town together to celebrate local heritage.</p>
+                        </div>
+                    </article>
+
+                    <!-- more news items remain... -->
+                </div>
+            </div>
+        </section>
+
+        <!-- School -->
+        <section id="school">
+            <div class="container">
+                <h2>School News & Events</h2>
+                <div class="school-content">
+                    <div class="card fade-in">
+                        <h3>Steytlerville Primary School</h3>
+                        <p class="muted">Committed to quality education with dedicated staff, modern classrooms and active extra-curricular programs.</p>
+                        <h4 style="margin-top:1rem;color:var(--brand)">Facilities & Resources</h4>
+                        <p class="muted">Library, science lab, computer lab and sports fields support well-rounded student development.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <h3 style="color:var(--brand)">📅 Upcoming Events</h3>
+                        <ul class="muted" style="padding-left:1rem">
+                            <li><strong>June 25, 2026</strong> — Mid-Year Awards</li>
+                            <li><strong>July 5 - 12, 2026</strong> — Winter Holiday</li>
+                            <li><strong>July 20, 2026</strong> — Sports Day</li>
+                            <li><strong>August 15, 2026</strong> — Science Fair</li>
+                            <li><strong>September 1, 2026</strong> — Spring Concert</li>
                         </ul>
                     </div>
                 </div>
-                <div class="team-card">
-                    <div class="team-header">
-                        <h3>Steytlerville Barbarians</h3>
-                        <p>Secondary Squad</p>
-                    </div>
-                    <div class="team-body">
-                        <p>Alternative squad competing in select regional leagues and community tournaments throughout the season.</p>
-                        <h4 style="color: var(--primary-color); margin-top: 1rem;">Team Details:</h4>
-                        <ul>
-                            <li>Competitive Squad</li>
-                            <li>Community Focus</li>
-                            <li>Regular Fixtures</li>
-                            <li>Youth Development</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-header">
-                        <h3>Youth & Development</h3>
-                        <p>Future of Rugby</p>
-                    </div>
-                    <div class="team-body">
-                        <p>Strong youth programs nurturing young talent, ensuring the sustainability and growth of rugby in Steytlerville.</p>
-                        <h4 style="color: var(--primary-color); margin-top: 1rem;">Programs:</h4>
-                        <ul>
-                            <li>U16 Development Squad</li>
-                            <li>U19 Championship Team</li>
-                            <li>Coaching Programs</li>
-                            <li>School Partnerships</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="grid" style="margin-top: 2rem;">
-                <div class="card">
-                    <h3>🏆 Recent Highlights</h3>
-                    <p>Steytlerville teams have showcased impressive performances in recent EPRU competitions, with consistent participation and competitive results against regional opponents.</p>
-                </div>
-                <div class="card">
-                    <h3>📅 Season Schedule</h3>
-                    <p>Competitions run throughout the year with matches typically scheduled on weekends. Contact the Steytlerville United Rugby Club for detailed fixture lists and match schedules.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- News Section -->
-    <section id="news">
-        <div class="container">
-            <h2>Local News & Updates</h2>
-            <div class="news-grid">
-                <div class="news-item">
-                    <div class="news-image">📰</div>
-                    <div class="news-content">
-                        <div class="date">June 15, 2026</div>
-                        <h4>Rugby Season Kicks Off</h4>
-                        <p>Steytlerville United begins their competitive season with high expectations and a strong squad ready to represent the town in EPRU competitions.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-image">🌳</div>
-                    <div class="news-content">
-                        <div class="date">June 10, 2026</div>
-                        <h4>Community Cleanup Initiative</h4>
-                        <p>Local residents organized a town cleanup drive, beautifying public spaces and promoting environmental awareness throughout Steytlerville.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-image">🎊</div>
-                    <div class="news-content">
-                        <div class="date">June 5, 2026</div>
-                        <h4>Heritage Day Celebrations</h4>
-                        <p>Steytlerville celebrated local heritage with cultural events, food stalls, and community gatherings bringing residents together.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-image">🏥</div>
-                    <div class="news-content">
-                        <div class="date">May 30, 2026</div>
-                        <h4>Health Clinic Expansion</h4>
-                        <p>Local health services expand with new facilities to better serve the growing Steytlerville community and surrounding areas.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-image">💼</div>
-                    <div class="news-content">
-                        <div class="date">May 25, 2026</div>
-                        <h4>Small Business Hub Launched</h4>
-                        <p>New entrepreneurship center opens to support local business development and economic growth in the region.</p>
-                    </div>
-                </div>
-                <div class="news-item">
-                    <div class="news-image">🎓</div>
-                    <div class="news-content">
-                        <div class="date">May 20, 2026</div>
-                        <h4>Scholarship Program Announced</h4>
-                        <p>Local business leaders announce new scholarship opportunities for deserving students pursuing higher education.</p>
-                    </div>
+                <div class="grid cols-3" style="margin-top:1rem">
+                    <div class="card fade-in"><h3>🎨 Extra-Curricular</h3><p class="muted">Rugby, netball, drama, music, coding club and environmental teams.</p></div>
+                    <div class="card fade-in"><h3>📚 Academic Support</h3><p class="muted">Remedial and extension classes — after-school tutoring available.</p></div>
+                    <div class="card fade-in"><h3>👨‍👩‍👧‍👦 Parent Involvement</h3><p class="muted">Active PTA supporting school programs and fundraising.</p></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- School Section -->
-    <section id="school">
-        <div class="container">
-            <h2>School News & Events</h2>
-            <div class="school-content">
-                <div class="school-info">
-                    <h3>Steytlerville Primary School</h3>
-                    <p>Our primary institution is committed to providing quality education and fostering the intellectual and personal development of all students. With dedicated educators and modern facilities, we prepare our learners for success.</p>
-                    <h3 style="margin-top: 2rem;">Academic Excellence</h3>
-                    <p>Strong curriculum delivery across all grades, with emphasis on mathematics, languages, and sciences. Regular assessments ensure student progress and areas for improvement are identified early.</p>
-                    <h3 style="margin-top: 2rem;">Facilities & Resources</h3>
-                    <p>Well-equipped classrooms, library resources, science laboratory, computer lab, and sports facilities support comprehensive student development.</p>
+        <!-- Contact -->
+        <section id="contact" class="container">
+            <h2>Contact & Information</h2>
+            <div class="grid cols-3">
+                <div class="card fade-in">
+                    <h3>📍 Steytlerville Town</h3>
+                    <p class="muted"><strong>Province:</strong> Eastern Cape • <strong>Postal Code:</strong> 6250</p>
+                    <p class="muted">Part of Sarah Baartman District Municipality. Distance from Bhisho: ~348 km south.</p>
                 </div>
-                <div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">📅 Upcoming Events</h3>
-                    <ul class="events-list">
-                        <li>
-                            <span class="event-date">June 25, 2026</span>
-                            <span class="event-name">Mid-Year Awards Ceremony</span>
-                            <span class="event-desc">Celebrating student achievements in academics, sports, and culture.</span>
-                        </li>
-                        <li>
-                            <span class="event-date">July 5 - 12, 2026</span>
-                            <span class="event-name">Winter School Holiday</span>
-                            <span class="event-desc">Two-week break for students and staff to rest and recharge.</span>
-                        </li>
-                        <li>
-                            <span class="event-date">July 20, 2026</span>
-                            <span class="event-name">Sports Day</span>
-                            <span class="event-desc">Inter-house athletic competition featuring track & field events.</span>
-                        </li>
-                        <li>
-                            <span class="event-date">August 2, 2026</span>
-                            <span class="event-name">Cultural Day</span>
-                            <span class="event-desc">Showcase of traditional crafts, music, dance, and cultural heritage.</span>
-                        </li>
-                        <li>
-                            <span class="event-date">August 15, 2026</span>
-                            <span class="event-name">Science Fair</span>
-                            <span class="event-desc">Students display innovative projects and scientific research.</span>
-                        </li>
-                        <li>
-                            <span class="event-date">September 1, 2026</span>
-                            <span class="event-name">Spring Concert</span>
-                            <span class="event-desc">Musical performances by choir, band, and individual artists.</span>
-                        </li>
-                        <li>
-                            <span class="event-date">November 10, 2026</span>
-                            <span class="event-name">Graduation Ceremony</span>
-                            <span class="event-desc">Celebration of our Grade 7 graduates moving to secondary school.</span>
-                        </li>
-                    </ul>
+                <div class="card fade-in">
+                    <h3>🏉 Rugby Club</h3>
+                    <p class="muted">Steytlerville United • EPRU Adams Cup (West Division). Contact local sports office for fixtures.</p>
+                </div>
+                <div class="card fade-in">
+                    <h3>🏫 School</h3>
+                    <p class="muted">Steytlerville Primary School • Grades Foundation - 7 • Contact school for enrollment details.</p>
                 </div>
             </div>
-            <div class="grid" style="margin-top: 3rem;">
-                <div class="card">
-                    <h3>🎨 Extra-Curricular Activities</h3>
-                    <p><strong>Sports:</strong> Rugby, netball, soccer, athletics, cross-country</p>
-                    <p><strong>Arts:</strong> Drama, music, visual arts, debating</p>
-                    <p><strong>Clubs:</strong> Science club, coding club, environmental club, reading circles</p>
-                </div>
-                <div class="card">
-                    <h3>📚 Academic Support</h3>
-                    <p>Remedial programs for struggling students, extension classes for advanced learners, and after-school tutoring ensure every student reaches their potential.</p>
-                </div>
-                <div class="card">
-                    <h3>👨‍👩‍👧‍👦 Parent Involvement</h3>
-                    <p>Parent-Teacher Association actively supports school programs, organizes fundraising events, and maintains strong communication between home and school.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container">
-        <h2>Contact & Information</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📍 Steytlerville Town</h3>
-                <p><strong>Province:</strong> Eastern Cape, South Africa</p>
-                <p><strong>Postal Code:</strong> 6250</p>
-                <p><strong>Region:</strong> Sarah Baartman District Municipality</p>
-                <p><strong>Distance from Bhisho:</strong> 348 km South</p>
+            <div style="margin-top:1rem" class="card fade-in">
+                <h3>Visitor Info</h3>
+                <p class="muted"><strong>Best Time to Visit:</strong> April - October • <strong>Climate:</strong> Semi-arid • <strong>Activities:</strong> Rugby, hiking, community events.</p>
             </div>
-            <div class="card">
-                <h3>🏉 Rugby Club</h3>
-                <p><strong>Club:</strong> Steytlerville United Rugby Club</p>
-                <p><strong>Competition:</strong> EPRU Adams Cup (West Division)</p>
-                <p><strong>Affiliation:</strong> Eastern Province Rugby Union</p>
-                <p>Contact local sports office for match schedules and training times.</p>
-            </div>
-            <div class="card">
-                <h3>🏫 School Information</h3>
-                <p><strong>Institution:</strong> Steytlerville Primary School</p>
-                <p><strong>Grades:</strong> Foundation through Grade 7</p>
-                <p><strong>Academic Focus:</strong> Quality education with modern facilities</p>
-                <p>Contact school directly for enrollment and program information.</p>
-            </div>
-            <div class="card">
-                <h3>🌐 Local Municipality</h3>
-                <p><strong>Administrative Body:</strong> Sarah Baartman District Municipality</p>
-                <p><strong>Services:</strong> Local government, permits, public services</p>
-                <p><strong>Contact:</strong> Municipal office for town administration inquiries</p>
-                <p>Support for infrastructure and community development projects.</p>
-            </div>
-            <div class="card">
-                <h3>🏥 Essential Services</h3>
-                <p><strong>Health:</strong> Local clinic and health services</p>
-                <p><strong>Emergency:</strong> Emergency services on request</p>
-                <p><strong>Police:</strong> Local police station</p>
-                <p>All emergency numbers available through local directory.</p>
-            </div>
-            <div class="card">
-                <h3>ℹ️ Visitor Information</h3>
-                <p><strong>Best Time to Visit:</strong> April - October</p>
-                <p><strong>Climate:</strong> Semi-arid, 26°C average</p>
-                <p><strong>Activities:</strong> Rugby, outdoor sports, community events</p>
-                <p>Experience the warmth and hospitality of Steytlerville!</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>About Steytlerville</h4>
-                    <p>A vibrant community in the heart of the Eastern Cape, South Africa. Postal Code: 6250</p>
+                <div>
+                    <h4>About</h4>
+                    <p class="muted">Community site for Steytlerville • Postal Code: 6250</p>
                 </div>
-                <div class="footer-section">
+                <div>
                     <h4>Quick Links</h4>
-                    <ul>
+                    <ul style="list-style:none;padding:0;margin:0" class="muted">
                         <li><a href="#about">About</a></li>
                         <li><a href="#weather">Weather</a></li>
                         <li><a href="#rugby">Rugby</a></li>
-                        <li><a href="#news">News</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#school">School</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Community Services</a></li>
-                        <li><a href="#">Local Directory</a></li>
-                    </ul>
+                <div>
+                    <h4>Contact</h4>
+                    <p class="muted">Municipal office for town administration and services. Local clinic and emergency contacts available locally.</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <p>📱 Social Media</p>
-                    <p>📧 Newsletter</p>
-                    <p>📞 Community Hotline</p>
+                <div>
+                    <h4>Follow</h4>
+                    <p class="muted">Social updates, newsletter and community hotline.</p>
                 </div>
             </div>
-            <div class="divider"></div>
-            <p style="font-size: 0.9rem; opacity: 0.8;">© 2026 Steytlerville Community Website | All Rights Reserved</p>
-            <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">Celebrating Community, Culture, and Connection</p>
+            <div style="margin-top:1rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:1rem;text-align:center;color:rgba(255,255,255,0.8)">
+                <small>© 2026 Steytlerville Community Website — Celebrating Community, Culture & Connection</small>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Mobile menu toggle
+        const toggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth scrolling & active link highlight
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            anchor.addEventListener('click', function(e){
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                const target = document.querySelector(href);
+                if (target){
+                    e.preventDefault();
+                    const rect = target.getBoundingClientRect();
+                    const offset = window.scrollY + rect.top - 64; // account for nav
+                    window.scrollTo({top: offset, behavior: 'smooth'});
+                    // close mobile menu
+                    if (navLinks.classList.contains('show')){
+                        navLinks.classList.remove('show');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // IntersectionObserver for active nav link
+        const sections = document.querySelectorAll('main section[id], header');
+        const navA = document.querySelectorAll('.nav-links a');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting){
+                    const id = entry.target.id;
+                    navA.forEach(a => {
+                        a.style.opacity = a.getAttribute('href') === '#' + id ? '1' : '0.9';
+                        if (a.getAttribute('href') === '#' + id){
+                            a.style.background = 'rgba(255,255,255,0.08)';
+                        } else {
+                            a.style.background = 'transparent';
+                        }
                     });
                 }
             });
-        });
-
-        // Highlight active navigation section
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.style.color = 'white';
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.style.color = 'var(--accent-color)';
-                }
-            });
-        });
-
-        // Explore More button functionality
-        document.querySelector('.btn').addEventListener('click', function() {
-            document.querySelector('#about').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
+        }, {threshold: 0.45});
+        sections.forEach(s => obs.observe(s));
     </script>
 </body>
 </html>
